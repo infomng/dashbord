@@ -1,15 +1,15 @@
+import Single from '../../components/single/Single';
 import './user.scss';
+import { singleUser } from "../../data";
+
 
 
 const User = () => {
   return (
-    <div className='userd'>
-        <div className="info">
-            <h1>Users</h1>
-            <button>Add New User</button>
-        </div>
+    <div className="user">
+      <Single {...singleUser} />
     </div>
-  )
+  );
 }
 
 export default User

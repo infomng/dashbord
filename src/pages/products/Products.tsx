@@ -19,30 +19,30 @@ const columns: GridColDef[] = [
     field: "title",
     type: "string",
     headerName: "Title",
-    width: 250,
+    width: 200,
   },
   {
     field: "color",
     type: "string",
     headerName: "Color",
-    width: 150,
+    width: 100,
   },
   {
     field: "price",
     type: "string",
     headerName: "Price",
-    width: 200,
+    width: 150,
   },
   {
     field: "producer",
     headerName: "Producer",
     type: "string",
-    width: 200,
+    width: 150,
   },
   {
     field: "createdAt",
     headerName: "Created At",
-    width: 200,
+    width: 150,
     type: "string",
   },
   {
@@ -80,7 +80,7 @@ const Products = () => {
       ) : (
         <DataTable slug="products" columns={columns} rows={data} />
       )} */}
-      {open && <Add slug="product" columns={columns} setOpen={setOpen} />}
+      {open && <Add slug="products" columns={columns} setOpen={setOpen} />}
     </div>
   );
 };
