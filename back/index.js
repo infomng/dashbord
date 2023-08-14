@@ -4,7 +4,8 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from './routes/user.js'
-import hotelsRoute from "./routes/hotels.js";
+import productRoute from './routes/product.js'
+
 
 
 
@@ -200,6 +201,7 @@ let products = [
     createdAt: "01.02.2023",
     inStock: true,
   },
+
   {
     id: 3,
     img: "http://images.samsung.com/is/image/samsung/uk-led-tv-hg40ed670ck-hg40ed670ckxxu-001-front",
@@ -279,7 +281,8 @@ let products = [
   },
 ];
 app.use("/api/user", userRoute);
-app.use("/api/hotels", hotelsRoute);
+app.use("/api/product", productRoute);
+// app.use("/api/products", hotelsRoute);
 
 
 app.use((err, req, res, next) => {
