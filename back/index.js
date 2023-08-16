@@ -4,6 +4,7 @@ import cookieParser from "cookie-parser";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from './routes/user.js'
+import authRoute from "./routes/auth.js";
 import productRoute from './routes/product.js'
 
 
@@ -280,6 +281,7 @@ let products = [
     inStock: true,
   },
 ];
+app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 // app.use("/api/products", hotelsRoute);
