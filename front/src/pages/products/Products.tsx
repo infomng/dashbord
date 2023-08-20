@@ -4,9 +4,11 @@ import DataTable from "../../components/dataTable/DataTable";
 import Add from "../../components/add/Add";
 import { GridColDef } from "@mui/x-data-grid";
 import { products } from "../../data";
+import useFetch from "../../hooks/useFetch";
+
 
 const columns: GridColDef[] = [
-  { field: "id", headerName: "ID", width: 90 },
+  { field: "_id", headerName: "ID", width: 90 },
   {
     field: "img",
     headerName: "Image",
@@ -53,7 +55,22 @@ const columns: GridColDef[] = [
   },
 ];
 
+  const [id, ...others] = columns;
+
+    const initialState = {
+      img: "",
+      color: "",
+      price: "",
+      inStock: 0,
+      producer: "",
+      title: "  ",
+    };
+ 
+
 const Products = () => {
+
+const { data, loading } = useFetch("http://localhost:8800/api/product/");
+
   const [open, setOpen] = useState(false);
 
   // TEST THE API
@@ -68,19 +85,16 @@ const Products = () => {
 
   return (
     <div className="products">
-      <div className="info">
-        <h1>Products</h1>
-        <button onClick={() => setOpen(true)}>Add New Products</button>
-      </div>
-      <DataTable slug="products" columns={columns} rows={products} />
-      {/* TEST THE API */}
-
-      {/* {isLoading ? (
-        "Loading..."
+      {loading ? (
+        "Loading please wait..."
       ) : (
-        <DataTable slug="products" columns={columns} rows={data} />
-      )} */}
-      {open && <Add slug="products" columns={columns} setOpen={setOpen} />}
+        <div className="info">
+          <h1>Products</h1>
+          <button onClick={() => setOpen(true)}>Add New Products</button>
+        </div>
+      )}
+      <DataTable slug="product" columns={columns} rows={data} />
+      {open && <Add initialState={initialState} slug="product" columns={others} setOpen={setOpen} />}
     </div>
   );
 };

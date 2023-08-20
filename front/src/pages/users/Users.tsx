@@ -9,10 +9,23 @@ import {
   GridToolbar,
 } from "@mui/x-data-grid";
 import Add from "../../components/add/Add";
+import useFetch from "../../hooks/useFetch";
+
+
+
 
 const Users = () => {
+
+
+
+    
+  const { data, loading,} = useFetch("http://localhost:8800/api/user/");
+
+  
+
+
   const columns: GridColDef[] = [
-    { field: "id", headerName: "ID", width: 90 },
+    { field: "_id", headerName: "ID", width: 90 },
     {
       field: "img",
       headerName: "Avatar",
@@ -52,12 +65,15 @@ const Users = () => {
       type: "string",
     },
     {
-      field: "verified",
-      headerName: "Verified",
+      field: "password",
+      headerName: "password",
       width: 150,
-      type: "boolean",
+      type: "string",
     },
   ];
+
+  const [id, ...others] = columns;
+
 
   const rows = [
     { id: 1, lastName: "Snow", firstName: "Jon", age: 35 },
@@ -71,17 +87,36 @@ const Users = () => {
     { id: 9, lastName: "Roxie", firstName: "Harvey", age: 65 },
   ];
 
+
     const [open,setOpen] =useState(false);
 
+    const initialState = {
+      img: "",
+      firstName: "",
+      lastName: "",
+      password: "",
+      phone: "  ",
+    };
+
   return (
-    
     <div className="users">
-      <div className="info">
-        <h1>Users</h1>
-        <button onClick={()=>setOpen(true)}>Add New User</button>
-      </div>
-      <DataTable slug="users" columns={columns} rows={userRows} />
-    {open && <Add slug= "users" columns={columns} setOpen = {setOpen} />}
+      {loading ? (
+        "Loading please wait..."
+      ) : (
+        <div className="info">
+          <h1>Users</h1>
+          <button onClick={() => setOpen(true)}>Add New User</button>
+        </div>
+      )}
+      <DataTable slug="user" columns={columns} rows={data} />
+      {open && (
+        <Add
+          initialState={initialState}
+          slug="user"
+          columns={others}
+          setOpen={setOpen}
+        />
+      )}
     </div>
   );
 };

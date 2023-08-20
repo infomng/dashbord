@@ -1,3 +1,7 @@
+import {
+  GridColDef,
+} from "@mui/x-data-grid";
+
 export const menu = [
   {
     id: 1,

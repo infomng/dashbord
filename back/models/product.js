@@ -14,7 +14,7 @@ const productSchema = new Schema({
   color: {
     type: String,
     required: true,
-    unique: true,
+ 
   },
   producer: {
     type: String,
@@ -30,7 +30,7 @@ const productSchema = new Schema({
   },
 
   inStock: {
-    type: Boolean,
+    type: Number,
     required: true,
   },
 });

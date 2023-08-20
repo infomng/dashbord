@@ -9,7 +9,6 @@ import productRoute from './routes/product.js'
 
 
 
-
 const app = express();
 
 app.use(express());
@@ -34,6 +33,7 @@ mongoose.connection.on("disconnected", () => {
   console.log("mongodb disconnected");
   connect();
 });
+
 
 let users = [
   {
@@ -285,6 +285,8 @@ app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 // app.use("/api/products", hotelsRoute);
+
+
 
 
 app.use((err, req, res, next) => {

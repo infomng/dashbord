@@ -1,4 +1,19 @@
 import User from '../models/user.js'
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+
+export const register = async (req, res, next) => {
+  const salt = bcrypt.genSaltSync(10);
+  const hash = bcrypt.hashSync(req.body.password, salt);
+  try {
+    const newUser = new User({ ...req.body, password: hash });
+    await newUser.save();
+    res.status(200).json(newUser);
+  } catch (error) {
+    next(error);
+  }
+};
+
 
 
 //CREATE ONE USER
@@ -27,13 +42,17 @@ res.status(200).json(user);
 
 }
 
+
 // GET ALL 
 export const getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find();
     res.status(200).json(users);
+  
+
   } catch (err) {}
 };
+
 
 
 //DELETE ONE USER THANKS TO IS ID

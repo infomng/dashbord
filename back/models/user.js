@@ -41,10 +41,10 @@ const userSchema = new Schema(
 
     verified: {
       type: Boolean,
-      required: true,
+      default: false,
     },
   },
-  { timestamps: true }
+  // { timestamps: true }
 );
 
 export default mongoose.model("User", userSchema);

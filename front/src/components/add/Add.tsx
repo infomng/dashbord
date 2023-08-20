@@ -1,49 +1,87 @@
+import axios from 'axios';
 import './add.scss'
 import {
-  DataGrid,
   GridColDef,
-  GridValueGetterParams,
-  GridToolbar,
 } from "@mui/x-data-grid";
+import { useState } from 'react';
 
-type Props= {
-    slug: string;
-    columns: GridColDef[];
-    setOpen:React.Dispatch<React.SetStateAction<boolean>>
 
-}
+type Props = {
+  slug: string;
+  columns: GridColDef[];
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  initialState: {
+    img: string;
+    firtsName?: string;
+    lastName?: string;
+    password?: string;
+    email?: string;
+    color?: string;
+    price?: string;
+    inStock?: number;
+    producer?: string;
+    title?: string;
+
+  };
+};
 
 
 const Add = (props:Props) => {
-      const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+
+
+
+
+
+  const [data, setData] = useState(props.initialState);
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    // const { name, value } = e.target;
+    setData((prevData) => ({
+      ...prevData,
+      [e.target.id]: e.target.value,
+    }));
+  };
+      const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
 
-        //add new item
-        // axios.post(`/api/${slug}s`, {})
-        // mutation.mutate();
-        props.setOpen(false);
+
+       try{
+        const res =await axios.post(`http://localhost:8800/api/${props.slug}`,data);
+        console.log(res);
+
+       }catch(error){console.log(error)}
+
       };
+
+
    return (
-    <div className="add">
-      <div className="modal">
-        <span className="close" onClick={() => props.setOpen(false)}>
-          X
-        </span>
-        <h1>Add new {props.slug}</h1>
-        <form onSubmit={handleSubmit}>
-          {props.columns
-            .filter((item) => item.field !== "id" && item.field !== "img")
-            .map((column) => (
-              <div className="item">
-                <label>{column.headerName}</label>
-                <input type={column.type} placeholder={column.field} />
-              </div>
-            ))}
-          <button>Send</button>
-        </form>
-      </div>
-    </div>
-  );
+     <div className="add">
+       <div className="modal">
+         <span className="close" onClick={() => props.setOpen(false)}>
+           X
+         </span>
+         <h1>Add new {props.slug}</h1>
+         <form onSubmit={handleSubmit}>
+           {props.columns
+             .filter(
+               (item) => item.field !== "_id" && item.field !== "createdAt"
+             )
+             .map((column) => (
+               <div className="item" key={column.field}>
+                 <label>{column.headerName}</label>
+                 <input
+                   type={column.type}
+                   placeholder={column.field}
+                   id ={column.field}
+                   onChange={handleChange}
+                 />
+               </div>
+             ))}
+           <button>Send</button>
+         </form>
+       </div>
+     </div>
+   );
 };
 
 

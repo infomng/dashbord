@@ -15,6 +15,7 @@ type Props = {
 };
 
 const DataTable = (props:Props) => {
+  const getRowId = (row:any) => row._id;
 
      const handleDelete = (id: number) => {
        //delete the item
@@ -45,7 +46,9 @@ const DataTable = (props:Props) => {
  
   return (
     <div className="dataTable">
+      {}
       <DataGrid
+        getRowId={getRowId}
         className="dataGrid"
         rows={props.rows}
         columns={[...props.columns, actionColumn]}

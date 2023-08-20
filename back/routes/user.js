@@ -1,12 +1,12 @@
 import express from 'express';
-import {createUser, deleteUser, getAllUsers, getUser, updateUser,} from '../controllers/user.js';
+import {createUser, deleteUser, getAllUsers, getUser, register, updateUser,} from '../controllers/user.js';
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 
 const router = express.Router();
 
 //CREATE USER
-router.post("/", createUser);
+router.post("/", register);
 
 // GET ALL USERS
 router.get("/", getAllUsers);
