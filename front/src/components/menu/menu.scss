@@ -1,11 +1,14 @@
 @import "../../styles/variables.scss";
 
 .menu {
+  
+ height: 100%;
   .item {
     display: flex;
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
+   
 
     .title {
         font-size: 12px;

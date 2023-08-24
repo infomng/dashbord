@@ -3,10 +3,12 @@ import {createUser, deleteUser, getAllUsers, getUser, register, updateUser,} fro
 import { verifyAdmin, verifyToken, verifyUser } from "../utils/verifyToken.js";
 
 
+
 const router = express.Router();
 
 //CREATE USER
 router.post("/", register);
+
 
 // GET ALL USERS
 router.get("/", getAllUsers);

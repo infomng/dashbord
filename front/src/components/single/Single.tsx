@@ -8,12 +8,16 @@ import {
   YAxis,
 } from "recharts";
 import "./single.scss";
+import useFetch from "../../hooks/useFetch";
+import { useParams } from "react-router-dom";
+
 
 type Props = {
   id: number;
   img?: string;
   title: string;
   info: object;
+  slug: string;
   chart?: {
     dataKeys: { name: string; color: string }[];
     data: object[];
@@ -22,18 +26,25 @@ type Props = {
 };
 
 const Single = (props: Props) => {
+
+
+  const { data, loading, error } = useFetch(
+    `http://localhost:8800/api/${props.slug}/${useParams().id}`
+  );
+
+    console.log(data);
+
   return (
     <div className="single">
       <div className="view">
         <div className="info">
           <div className="topInfo">
-            {props.img && <img src={props.img} alt="" />}
-            <h1>{props.title}</h1>
+            {props.img && <img src={data.img} alt="" />}
+            <h1>{data.firstName}</h1>
             <button>Update</button>
           </div>
           <div className="details">
             {Object.entries(props.info).map((item) => (
-
               <div className="item" key={item[0]}>
                 <span className="itemTitle">{item[0]}</span>
                 <span className="itemValue">{item[1]}</span>

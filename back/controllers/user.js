@@ -1,6 +1,14 @@
 import User from '../models/user.js'
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import createError from "../utils/err.js";
+
+
+
+
+
+
+
 
 export const register = async (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);

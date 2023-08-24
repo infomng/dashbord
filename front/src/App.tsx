@@ -1,5 +1,5 @@
 import Home from "./pages/home/Home";
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
+import { createBrowserRouter, RouterProvider, Outlet, Navigate } from "react-router-dom";
 import Users from "./pages/users/Users";
 import Products from "./pages/products/Products";
 import Navbar from "./components/navbar/Navbar";
@@ -9,15 +9,31 @@ import Login from "./pages/login/Login";
 import "./styles/global.scss";
 import User from "./pages/user/User";
 import Product from "./pages/product/Product";
+import AuthContext from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { useContext } from "react";
 
 const queryClient = new QueryClient();
 
+
 function App() {
+const { user } = useContext(AuthContext);
+
+
+  const ProtectedRoute = ({children}:any)=>{
+    if(!user){
+      return <Navigate to = "/login" />;
+    }
+
+    return children;
+  }
   const Layout = () => {
     return (
       <div className="main">
-        <Navbar />
+        <div className="navbarContainer">
+          <Navbar />
+        </div>
+
         <div className="container">
           <div className="menuContainer">
             <Menu />
@@ -28,7 +44,9 @@ function App() {
             </QueryClientProvider>
           </div>
         </div>
-        <Footer />
+        <div className="footer">
+          <Footer />
+        </div>
       </div>
     );
   };
@@ -36,7 +54,10 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout />,
+      
+      element:(  <ProtectedRoute>
+        <Layout />,
+         </ProtectedRoute>),
       children: [
         {
           path: "/",
@@ -62,11 +83,12 @@ function App() {
     },
     {
       path: "/login",
-      element: <Login />,
-    },
+      element: <Login />
+    }
   ]);
 
   return <RouterProvider router={router} />;
 }
 
 export default App;
+

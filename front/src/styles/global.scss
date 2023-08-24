@@ -5,6 +5,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+
+
+}
+
+  ::-webkit-scrollbar {
+  width: 0px;
+  
 }
 
 a {
@@ -16,24 +23,52 @@ a {
   font-family: "Inter", sans-serif;
   background-color: $main-bg;
   color: $main-color;
-}
+  height: 100vh;
+ 
+
+ .navbarContainer {
+   margin: 0;
+  overflow: hidden;
+  background-color:$dark-bg;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 2  ;
+ }
+
+  
 
 .container {
   display: flex;
-}
+  position: relative;
+  top: 70px;
 
 .menuContainer {
   width: 250px;
   padding: 5px 20px;
   border-right: 2px solid $soft-bg;
+  height: 80vh;
+  overflow: auto;
+  
+ 
 
   // @include lg{
   //   width: max-content;
   // }
 }
 
+
+
 .contentContainer {
   padding: 5px 20px;
   width: 100%;
-  overflow: hidden;
+  height: 80%;
+  
+}
+}
+.footer{
+  bottom: 0;
+  width: 100%;
+  position: relative;
+}
 }

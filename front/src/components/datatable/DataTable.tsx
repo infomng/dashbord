@@ -17,7 +17,7 @@ type Props = {
 const DataTable = (props:Props) => {
   const getRowId = (row:any) => row._id;
 
-     const handleDelete = (id: number) => {
+     const handleDelete = (_id: number) => {
        //delete the item
        // mutation.mutate(id)
        console.log(" the element has been deleted")
@@ -30,12 +30,12 @@ const DataTable = (props:Props) => {
         renderCell: (params) => {
           return (
             <div className="action">
-              <Link to={`/${props.slug}/${params.row.id}`}>
+              <Link to={`/${props.slug}/${params.row._id}`}>
                 <img src="/view.svg" alt="" />
               </Link>
               <div
                 className="delete"
-                onClick={() => handleDelete(params.row.id)}
+                onClick={() => handleDelete(params.row._id)}
               >
                 <img src="/delete.svg" alt="" />
               </div>

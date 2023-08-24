@@ -5,12 +5,13 @@
 .topBox{
     h1{
         margin-bottom: 20px;
+
     }
 
     .list{
         display: flex;
         flex-direction: column;
-        gap: 30px;
+        gap: 5px;
 
         .listItem{
             display: flex;
@@ -24,9 +25,7 @@
 
             .user{
                 display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 10px;
+                gap: 20px;
 
                 img{
                     border-radius: 50%;
@@ -47,15 +46,15 @@
                     }
 
                      .email{
-                        font-size: 14px;
-                        font-weight: 300;
+                        font-size: 12px;
+                       
                     }
 
                 }
             }
 
             .amout{
-                
+                font-weight: 500;
             }
         }
     }

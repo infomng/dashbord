@@ -2,29 +2,37 @@
 
 
 
-import React from "react";
+
 import { createContext, useEffect, useReducer } from "react";
+
+
 
 
 interface User {
   user: string;
   loading: boolean;
   error: any;
-  dispatch?: React.Dispatch<any>;
+  dispatch:React.Dispatch<any>
+
 }
 
 const storedUser = localStorage.getItem("user");
 ;
 // Context initial State
-const INITIAL_STATE: User = {
+const INITIAL_STATE:User = {
   user: storedUser ? JSON.parse(storedUser) : null,
   loading: false,
   error: null,
+   dispatch: ()=>{}, 
+
 
 };
 
-// Create the context authContext
 
+
+
+
+// Create the context authContext
 export const AuthContext = createContext(INITIAL_STATE);
 
 // Create a reducer function
@@ -62,9 +70,13 @@ export const AuthReducer = (state:any, action:any) => {
 
 
 // create a context provider function
-const AuthContextProvider = ({children}:any) => {
+export const AuthContextProvider = ({children}:any) => {
+  
   const [state,dispatch] = useReducer(AuthReducer, INITIAL_STATE);
-  useEffect(()=>{localStorage.setItem('user', JSON.stringify(state.user))},[state.user]);
+
+  useEffect(
+    () => {localStorage.setItem('user', JSON.stringify(state.user))}, [state.user]
+    );
   return (
     <AuthContext.Provider
       value={{
