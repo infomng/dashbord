@@ -6,10 +6,18 @@ import mongoose from "mongoose";
 import userRoute from './routes/user.js'
 import authRoute from "./routes/auth.js";
 import productRoute from './routes/product.js'
+import initServer from "./utils/socket.js"
+import {createServer} from "http";
+import {Server} from 'socket.io'
+
 
 
 
 const app = express();
+
+
+
+const httpServer = createServer(app);
 
 app.use(express());
 app.use(express.json());
@@ -17,6 +25,15 @@ app.use(cors());
 app.use(cookieParser());
 dotenv.config();
 
+
+// const server = http.createServer(app);
+const io = new Server(httpServer,{
+  cors:{
+    origin: 'http://localhost:5173',
+    credentials:true,
+  }
+});
+initServer(io);
 
 // connect to mongodb
 const connect = async () => {
@@ -27,6 +44,7 @@ const connect = async () => {
     throw error;
   }
 };
+
 
 // what appen in case of deconnection after the first one 
 mongoose.connection.on("disconnected", () => {
@@ -53,7 +71,7 @@ app.use((err, req, res, next) => {
   });
 });
 
-app.listen(8800, () => {
+httpServer.listen(8800, () => {
   console.log("backend is running on localhost:8800");
   connect();
 });

@@ -12,6 +12,8 @@ import Product from "./pages/product/Product";
 import AuthContext from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { useContext } from "react";
+import Chat from "./components/chat/Chat";
+import Profile from "./components/profile/Profile";
 
 const queryClient = new QueryClient();
 
@@ -78,6 +80,14 @@ const { user } = useContext(AuthContext);
         {
           path: "/product/:id",
           element: <Product />,
+        },
+        {
+          path: "/chat",
+          element: <Chat />,
+        },
+        {
+          path: "/profile/:id",
+          element: <Profile />,
         },
       ],
     },

@@ -28,8 +28,8 @@ const navigate = useNavigate();
         </div>
         {user && (
           <div className="user">
-            <img src={user.img} alt="" />
-            <span>{user.firstName}</span>
+            <img src={user?.img} alt="" />
+            <span>{user?.firstName}</span>
             <div className="logout">
               <button type="submit" onClick={handleSubmit}>LOGOUT</button>
             </div>

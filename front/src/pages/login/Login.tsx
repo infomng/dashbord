@@ -1,6 +1,6 @@
 import "./login.scss";
 import { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate,  } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
@@ -34,7 +34,10 @@ const Login = () => {
 
       console.log(res.data.details.img);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-      navigate("/");
+     setTimeout(() => {
+       navigate("/");
+       window.location.reload();
+     }, 0);
     } catch (err: any) {
       console.log(err);
       dispatch({ type: "LOGIN_ERROR", payload: err.response.data });
