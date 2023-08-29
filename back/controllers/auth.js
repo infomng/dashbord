@@ -1,6 +1,7 @@
+import axios from "axios";
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
-import jwt from "jsonwebtoken";   
+import jwt from "jsonwebtoken";
 import createError from "../utils/err.js";
 
 export const register = async (req, res, next) => {
@@ -14,7 +15,6 @@ export const register = async (req, res, next) => {
     next(error);
   }
 };
-
 
 export const login = async (req, res, next) => {
   try {
@@ -33,16 +33,33 @@ export const login = async (req, res, next) => {
       process.env.JWT
     );
 
-    const { password, isAdmin, ...otherDetails } = user._doc;
+    const { password, isAdmin, email, ...otherDetails } = user._doc;
     res
       .cookie("access_token", token, {
         httpOnly: true,
       })
       .status(200)
       .json({ details: { ...otherDetails }, isAdmin });
+
+    // Call the chat function with the user's email
+    await chat(email);
   } catch (err) {
     next(err);
   }
 };
 
+export const chat = async (email) => {
+  // Get or create user on Chat Engine!
+  try {
+    const response = await axios.put(
+      "https://api.chatengine.io/users/",
+      { username: email, secret: email, first_name: email },
+      { headers: { "Private-Key": "c5455632-5e1e-4a70-a304-5921618c1720" } }
+    );
 
+    console.log(email);
+    return response.data;
+  } catch (error) {
+    throw error;
+  }
+};

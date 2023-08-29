@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 import userRoute from './routes/user.js'
 import authRoute from "./routes/auth.js";
+import chatRoute from "./routes/chat.js";
 import productRoute from './routes/product.js'
 import initServer from "./utils/socket.js"
 import {createServer} from "http";
@@ -66,7 +67,7 @@ mongoose.connection.on("disconnected", () => {
 
 
 
-app.use("/api/auth", authRoute);
+app.use("/api/auth", authRoute, chatRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 
