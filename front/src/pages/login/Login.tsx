@@ -1,25 +1,20 @@
 import "./login.scss";
 import { useState, useContext } from "react";
-import { useNavigate,  } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 
-// type Props = {
-//   initialState: { email: string; password: string };
-// };
-
 const Login = () => {
-  const [credentials, setCredentials] = useState({
-    email:String,
-    password:String
-  }); // Fix here
-
-  const { loading, error, dispatch } = useContext(AuthContext);
   const navigate = useNavigate();
+  const { loading, error, dispatch } = useContext(AuthContext);
+
+  const [credentials, setCredentials] = useState({
+    email: String,
+    password: String,
+  });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCredentials((prev) => ({ ...prev, [e.target.id]: e.target.value }));
-    console.log(credentials);
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -32,14 +27,14 @@ const Login = () => {
         credentials
       );
 
-      console.log(res.data.details.img);
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-     setTimeout(() => {
-       navigate("/");
-       window.location.reload();
-     }, 0);
+
+      setTimeout(() => {
+        navigate("/");
+        window.location.reload();
+      }, 0);
     } catch (err: any) {
-      console.log(err);
+      console.log(error);
       dispatch({ type: "LOGIN_ERROR", payload: err.response.data });
     }
   };
@@ -56,6 +51,7 @@ const Login = () => {
               id="email"
               className="linput"
               onChange={handleChange}
+              required
             />
             <input
               type="password"
@@ -63,8 +59,11 @@ const Login = () => {
               id="password"
               onChange={handleChange}
               className="linput"
+              required
             />
-            <button type="submit" className="lButton">Login</button> {/* Use 'submit' type */}
+            <button type="submit" className="lButton">
+              Login
+            </button>
           </div>
         </form>
       </div>

@@ -11,6 +11,7 @@ import {
   ResponsiveContainer,
 } from "recharts";
 
+
 type Props = {
   color: string;
   icon: string;

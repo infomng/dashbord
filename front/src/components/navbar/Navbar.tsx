@@ -6,10 +6,11 @@ import { useNavigate } from "react-router-dom";
 export const Navbar = () => {
   const { user } = useContext(AuthContext);
   const { loading, error, dispatch } = useContext(AuthContext);
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
   const handleSubmit = () => {
-    dispatch({type:"LOGOUT"})
-  navigate("/login");
+    dispatch({ type: "LOGOUT" });
+    navigate("/login");
   };
 
   return (
@@ -31,7 +32,9 @@ const navigate = useNavigate();
             <img src={user?.img} alt="" />
             <span>{user?.firstName}</span>
             <div className="logout">
-              <button type="submit" onClick={handleSubmit}>LOGOUT</button>
+              <button type="submit" onClick={handleSubmit}>
+                LOGOUT
+              </button>
             </div>
           </div>
         )}

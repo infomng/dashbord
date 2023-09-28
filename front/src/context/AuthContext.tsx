@@ -1,8 +1,4 @@
 // We use the AuthContext to keep track of the the state of the user after or before the connexion completes
-
-
-
-
 import { createContext, useEffect, useReducer } from "react";
 
 

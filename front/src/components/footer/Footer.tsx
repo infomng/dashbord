@@ -7,7 +7,7 @@ const Footer = () => {
   return (
     <div className='footer'>
         <span>{` ${copyrightSymbol}GDmedia ${currentYear}`}</span>
-        {/* <span>GD Media admin  dashbord</span> */}
+      
     </div>
   )
 }

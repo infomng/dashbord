@@ -1,0 +1,73 @@
+@import "./variable.scss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+
+
+.main {
+  font-family: "Inter", sans-serif;
+  background: $main-bg;
+  width: 100wh;
+  height: 100vh;
+  max-width: 100wh;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  color: white;
+
+  .navbar {
+    height: 8%;
+  }
+
+  .menu-outlet {
+    width: 100%;
+      height: 88%;
+
+    padding-top:8px;
+    display: flex;
+
+    .menu {
+      width: 250px;
+      padding: 5px 20px;
+      border-right: 2px solid $soft-bg;
+      height: 80vh;
+      overflow-y: auto;
+      overflow-x: hidden;
+      color: white;
+
+            /* Adjust scrollbar size */
+      &::-webkit-scrollbar {
+        width: 0px; /* Adjust width as needed */
+        // height: 12px; /* Adjust height as needed */
+      }
+
+
+     
+    }
+   
+   
+
+    .outlet {
+      width: 100%;
+      padding: 5px 20px;
+
+
+    }
+  }
+
+  .footer {
+display: flex;
+align-items: center;
+height: 4%;
+padding: 10px;
+  }
+}

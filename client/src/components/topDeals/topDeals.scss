@@ -1,0 +1,58 @@
+.topdeals {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 0;
+  gap: 20px 0px;
+
+  .title {
+    font-size: xx-large;
+  }
+  .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: 100%;
+    overflow-y: scroll;
+    
+
+    &::-webkit-scrollbar {
+      width: 5px;
+    }
+
+  
+    &::-webkit-scrollbar-track {
+      background: #f1f1f1; /* Color of the scrollbar track */
+    }
+
+    /* Handle */
+    &::-webkit-scrollbar-thumb {
+      background: #888; /* Color of the scrollbar handle */
+    }
+
+    /* Handle on hover */
+    &::-webkit-scrollbar-thumb:hover {
+      background: #9c2424; /* Color of the scrollbar handle on hover */
+    }
+
+    .topdeal-items {
+      display: flex;
+      justify-content: space-around;
+      align-content: center;
+      gap: 30px;
+      padding: 10px 20px;
+
+      .user-image {
+      }
+
+      .user-details {
+        display: flex;
+        flex-direction: column;
+        font-size: small;
+      }
+
+      .amout {
+      }
+    }
+  }
+}
