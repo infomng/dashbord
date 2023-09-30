@@ -1,7 +1,7 @@
 import React, { useState, ChangeEvent, useContext } from "react";
 import "./login.scss";
 
-import { useNavigate } from "react-router-dom";
+import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import { Eye, EyeOff } from "lucide-react";
 
 
 
-const Login: React.FC = () => {
+const Login = () => {
     const navigate = useNavigate();
     const { loading, error, dispatch } = useContext(AuthContext);
 
@@ -65,14 +65,12 @@ const Login: React.FC = () => {
       );
 
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
-        navigate("/");
-
-      // setTimeout(() => {
-      //   navigate("/");
-      //   window.location.reload();
-      // }, 0);
+        navigate("/" );
+        location.reload();
+     
+console.log(res);
     } catch (e) {
-      console.log(e);
+  
       dispatch({ type: "LOGIN_ERROR", payload: error });
     }
   };

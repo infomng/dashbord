@@ -11,7 +11,7 @@ import User from "./pages/user/User";
 import Product from "./pages/product/Product";
 import AuthContext from "./context/AuthContext";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useContext } from "react";
+import { ReactNode, useContext } from "react";
 import Chat from "./components/chat/Chat";
 import Profile from "./components/profile/Profile";
 
@@ -22,7 +22,7 @@ function App() {
 const { user } = useContext(AuthContext);
 
 
-  const ProtectedRoute = ({children}:any)=>{
+  const ProtectedRoute = ({children}:{children:ReactNode})=>{
     if(!user){
       return <Navigate to = "/login" />;
     }

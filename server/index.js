@@ -34,7 +34,7 @@ mongoose.connection.on("disconnected", () => {
   dbconnect();
 });
 
-app.use("/api/auth",verifyAdmin, authRoute);
+app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 

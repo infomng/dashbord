@@ -1,6 +1,15 @@
+import DropDownMenu from '../dropDownMenu/dropDownMenu';
 import './navbar.scss'
+import {useState} from 'react'
 
 const Navbar = () => {
+
+  const [open, setOpen] = useState(false);
+  const handleOpen = () => {
+setOpen(!open);
+  }
+
+
   return (
     <div className="navbar">
       <div className="logo">
@@ -19,7 +28,10 @@ const Navbar = () => {
           <img src="user.jpg" alt="" />
           <span>Username</span>
         </div>
-        <img src="setting.svg" alt="" />
+        <div className="settings" onClick={handleOpen} >
+          <img src="setting.svg" alt="" />
+         {open && <div className="settings-items"> <DropDownMenu /></div>}
+        </div>
       </div>
     </div>
   );
