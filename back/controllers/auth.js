@@ -41,12 +41,10 @@ export const login = async (req, res, next) => {
       .status(200)
       .json({ details: { ...otherDetails }, isAdmin });
 
-    // Call the chat function with the user's email
-    await chat(email);
   } catch (err) {
     next(err);
   }
-};
+};  
 
 export const chat = async (email) => {
   // Get or create user on Chat Engine!

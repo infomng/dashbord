@@ -33,6 +33,11 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
+  updatedAt:{
+    type: Date,
+    dafault: Date.now,
+    required: true,
+  }
 });
 
 export default mongoose.model("Product", productSchema);

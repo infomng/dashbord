@@ -67,7 +67,7 @@ mongoose.connection.on("disconnected", () => {
 
 
 
-app.use("/api/auth", authRoute, chatRoute);
+app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);
 app.use("/api/product", productRoute);
 

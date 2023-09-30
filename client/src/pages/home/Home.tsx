@@ -7,8 +7,13 @@ import {
   chartBoxProduct,
   chartBoxRevenue,
   chartBoxUser,
+  barChartBoxVisit,
+  barChartBoxprofit,
+  revenue
 } from "../../data";
 import Topsells from "../../components/topsells/Topsells";
+import Barchart from "../../components/barchart/Barchart";
+import Revenue from "../../components/revenue/Revenue";
 
 
 
@@ -21,23 +26,28 @@ const Home = () => {
       </div>
       <div className="box box2">
         <Chartbox {...chartBoxUser} />
-      </div>  
+      </div>
       <div className="box box3">
         <Chartbox {...chartBoxConversion} />
       </div>
       <div className="box box4">
-<Topsells/>
+        <Topsells />
       </div>
       <div className="box box5">
-    
         <Chartbox {...chartBoxProduct} />
       </div>
       <div className="box box6">
         <Chartbox {...chartBoxRevenue} />
       </div>
-      <div className="box box7">Box 7</div>
-      <div className="box box8">Box 8</div>
-      <div className="box box9">Box 9</div>
+      <div className="box box7">
+        <Revenue {...revenue}/>
+      </div>
+      <div className="box box8">
+        <Barchart {...barChartBoxVisit} />
+      </div>
+      <div className="box box9">
+        <Barchart {...barChartBoxprofit} />
+      </div>
     </div>
   );
 };

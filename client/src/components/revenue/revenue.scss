@@ -1,0 +1,17 @@
+.revenue {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 5px;
+  .title {
+    flex: 1;
+    font-size: x-large;
+    font-weight: bold;
+
+  }
+  .chart {
+    flex: 4;
+
+
+  }
+}
