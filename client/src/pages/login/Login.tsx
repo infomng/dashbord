@@ -19,6 +19,8 @@ const Login = () => {
       password: String,
     });
 
+    console.log(credentials);
+
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
   const [showPassword, setShowPassword] = useState(false); // State variable for password visibility
@@ -99,7 +101,7 @@ console.log(res);
           />
           {errors.email && <span>{errors.email}</span>}
         </div>
-        <div >
+        <div>
           <label>Password:</label>
 
           <div className="password-input">
@@ -121,6 +123,11 @@ console.log(res);
           Don't have an account?{" "}
           <Link style={{ color: "#8884d8" }} to="/register">
             Register
+          </Link>
+        </div>
+        <div>
+          <Link style={{ color: "#8884d8" }} to="/forgot-password">
+            Forgot password?
           </Link>
         </div>
       </form>

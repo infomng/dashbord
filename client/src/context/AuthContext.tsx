@@ -18,7 +18,7 @@ type AuthAction =
 const storedUser = localStorage.getItem("user");
 
 const INITIAL_STATE: UserState = {
-  user: storedUser ? JSON.parse(storedUser) : null,
+  user: storedUser? JSON.parse(storedUser) : null,
   loading: false,
   error: new Error,
   dispatch: () => {},

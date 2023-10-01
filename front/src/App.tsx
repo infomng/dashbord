@@ -14,6 +14,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { ReactNode, useContext } from "react";
 import Chat from "./components/chat/Chat";
 import Profile from "./components/profile/Profile";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 
 const queryClient = new QueryClient();
 
@@ -72,6 +73,10 @@ const { user } = useContext(AuthContext);
         {
           path: "/products",
           element: <Products />,
+        },
+        {
+          path: "/forgot-password",
+          element: <ForgotPassword />,
         },
         {
           path: "/user/:id",

@@ -8,6 +8,7 @@ export const createProduct = async (req, res, next) => {
     const savedProduct = await newProduct.save();
     res.status(200).json(savedProduct);
   } catch (err) {
+    console.log(err);
     next(err);
   }
 };

@@ -20,6 +20,10 @@ import { ReactNode, useContext } from "react";
 import AuthContext from "./context/AuthContext";
 import Products from "./pages/products/Products";
 import Users from "./pages/users/Users";
+import User from "./pages/user/User";
+import Product from "./pages/product/Product";
+import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
+import ResetPassword from "./pages/resetPassword/ResetPassword";
 function App() {
   const { user } = useContext(AuthContext);
 
@@ -67,9 +71,18 @@ function App() {
           path: "/products",
           element: <Products />,
         },
+
         {
           path: "/users",
-          element: <Users/>
+          element: <Users />,
+        },
+        {
+          path: "/user/:id",
+          element: <User />,
+        },
+        {
+          path: "/product/:id",
+          element: <Product />,
         },
       ],
     },
@@ -84,6 +97,14 @@ function App() {
     {
       path: "/register",
       element: <Register />,
+    },
+    {
+      path: "/forgot-password",
+      element: <ForgotPassword />,
+    },
+    {
+      path: "/reset_password/:id/:token",
+      element: <ResetPassword />,
     },
   ]);
 

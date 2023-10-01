@@ -34,11 +34,11 @@ const Add = (props: Props) => {
     e.preventDefault();
 
     try {
-      const res = await axios.post(
+    const res =  await axios.post(
         `http://localhost:8800/api/${props.slug}`,
         data
       );
-      console.log(res);
+    console.log(res);
     } catch (error) {
       console.log(error);
     }

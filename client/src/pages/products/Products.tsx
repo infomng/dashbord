@@ -49,7 +49,7 @@ const columns: GridColDef[] = [
     field: "inStock",
     headerName: "In Stock",
     width: 150,
-    type: "boolean",
+    type: "Number",
   },
 ];
 

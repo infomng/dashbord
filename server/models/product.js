@@ -35,7 +35,7 @@ const productSchema = new Schema({
   updatedAt: {
     type: Date,
     dafault: Date.now,
-    required: true,
+
   },
 });
 
