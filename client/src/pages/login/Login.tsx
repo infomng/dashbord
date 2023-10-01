@@ -6,6 +6,7 @@ import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import { purple } from "@mui/material/colors";
 
 
 
@@ -69,6 +70,7 @@ const Login = () => {
       dispatch({ type: "LOGIN_SUCCESS", payload: res.data.details });
         navigate("/" );
         location.reload();
+   
      
 console.log(res);
     } catch (e) {
@@ -125,8 +127,8 @@ console.log(res);
             Register
           </Link>
         </div>
-        <div>
-          <Link style={{ color: "#8884d8" }} to="/forgot-password">
+        <div className="forgot-password" >
+          <Link style={{ color: "purple" }} to="/forgot-password">
             Forgot password?
           </Link>
         </div>

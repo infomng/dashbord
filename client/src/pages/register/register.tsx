@@ -2,6 +2,7 @@ import React, { useState, ChangeEvent, FormEvent } from "react";
 import "./register.scss";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
+import axios from 'axios'
 
 interface FormData {
   username: string;
@@ -11,7 +12,7 @@ interface FormData {
 }
 
 const Register: React.FC = () => {
-  const [formData, setFormData] = useState<FormData>({
+  const [credentials, setcredentials] = useState<FormData>({
     username: "",
     email: "",
     password: "",
@@ -49,14 +50,14 @@ const Register: React.FC = () => {
       validationErrors.password = "";
     }
 
-    if (name === "confirmPassword" && value !== formData.password) {
+    if (name === "confirmPassword" && value !== credentials.password) {
       validationErrors.confirmPassword = "Passwords do not match";
     } else {
       validationErrors.confirmPassword = "";
     }
 
-    setFormData({
-      ...formData,
+    setcredentials({
+      ...credentials,
       [name]: value,
     });
 
@@ -66,9 +67,11 @@ const Register: React.FC = () => {
     setShowPassword(!showPassword); // Toggle the state
   };
  
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async  (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
+    const res = await axios.post("http://localhost:8800/api/auth/register", credentials)
+console.log(res);
     if (Object.keys(errors).length === 0) {
       alert("Form submitted successfully");
     }

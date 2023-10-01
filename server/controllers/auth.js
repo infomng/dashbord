@@ -2,7 +2,6 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import bcrypt from "bcryptjs";
 import User from "../models/user.js";
-import dotenv from "dotenv";
 import nodemailer from  'nodemailer'
 
 export const register = async (req, res, next) => {
@@ -60,7 +59,6 @@ export const forgotPassword = async (req, res, next) => {
 
     const{ email} = req.body
   const user =  await User.findOne({ email: email});
-  console.log(email);
   if(!user) return res.send({ status: "user not found" });
  
 
@@ -81,9 +79,9 @@ export const forgotPassword = async (req, res, next) => {
           
           var mailOptions = {
             from: 'infomng2022@gmail.com',
-            to: 'infomng2022@gmail.com',
+            to: email,
             subject: 'Reset Password Link',
-            text: `http://localhost:5173/reset_password/${user._id}/${token}/`
+            text: `http://localhost:5173/reset_password/${user._id}/${token}/`  // ce truc lè m'avait fait chier
           };
           
           transporter.sendMail(mailOptions, function(error, info){
