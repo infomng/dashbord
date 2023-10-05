@@ -6,7 +6,7 @@ import cookieParser from 'cookie-parser';
 import userRoute from "./routes/user.js";
 import authRoute from "./routes/auth.js";
 import productRoute from "./routes/product.js";
-import {verifyAdmin} from "./utils/verifyToken.js";
+import { verifyToken} from "./utils/verifyToken.js";
 
 
 const app = express();
@@ -33,6 +33,7 @@ mongoose.connection.on("disconnected", () => {
   console.log("mongodb disconnected");
   dbconnect();
 });
+
 
 app.use("/api/auth", authRoute);
 app.use("/api/user", userRoute);

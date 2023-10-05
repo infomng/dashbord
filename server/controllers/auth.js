@@ -13,7 +13,7 @@ dotenv.config();
 
 export const login = async (req, res, next) => {
   try {
-    const user = await User.findOne({ email: req.body.email });
+    const user = await Admin.findOne({ email: req.body.email });
     if (!user) {
       return next(new Error());
     }
@@ -22,8 +22,8 @@ export const login = async (req, res, next) => {
       user.password
     );
 
-    const { isAdmin } = user._doc;
-    if (!isPasswordCorrect || !isAdmin) {
+    const { isAdmin, verified } = user._doc;
+    if (!isPasswordCorrect || !isAdmin ||!verified) {
       return next(new Error());
     }
 
@@ -102,7 +102,10 @@ export const resetPassword = async (req, res, next) => {
   });
 };
 
-// Register
+
+
+// REGISTER
+////////////////////////////////////////////////////////////////////////////////////////////////                                      
 export const register = async (req, res, next) => {
   const salt = bcrypt.genSaltSync(10);
   const hash = bcrypt.hashSync(req.body.password, salt);
@@ -154,6 +157,7 @@ export const register = async (req, res, next) => {
     next(e);
   }
 };
+////////////////////////////////////////////////////////////////////////////////////////////////
 
 export const verifyEmail = async (req, res, next) => {
   try {
