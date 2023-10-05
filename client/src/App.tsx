@@ -1,13 +1,9 @@
 import "./styles/global.scss";
-import { createRoot } from "react-dom/client";
 
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
   Outlet,
-  useNavigate,
   Navigate,
 } from "react-router-dom";
 import Home from "./pages/home/Home";
@@ -24,6 +20,8 @@ import User from "./pages/user/User";
 import Product from "./pages/product/Product";
 import ForgotPassword from "./pages/forgotPassword/ForgotPassword";
 import ResetPassword from "./pages/resetPassword/ResetPassword";
+import EmailVerirfication from "./pages/emailVerification/EmailVerirfication";
+
 function App() {
   const { user } = useContext(AuthContext);
 
@@ -106,6 +104,11 @@ function App() {
       path: "/reset_password/:id/:token",
       element: <ResetPassword />,
     },
+    {
+      path: "/verify-email/:id/:token",
+      element: <EmailVerirfication/>,
+    },
+  
   ]);
 
   return <RouterProvider router={router} />;

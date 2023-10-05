@@ -1,6 +1,6 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import "./register.scss";
-import { Link } from "react-router-dom";
+import { Link , useNavigate} from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
 import axios from 'axios'
 
@@ -8,15 +8,15 @@ interface FormData {
   username: string;
   email: string;
   password: string;
-  confirmPassword: string;
+
 }
 
 const Register: React.FC = () => {
+  const navigate = useNavigate()
   const [credentials, setcredentials] = useState<FormData>({
     username: "",
     email: "",
     password: "",
-    confirmPassword: "",
   });
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -70,10 +70,12 @@ const Register: React.FC = () => {
   const handleSubmit = async  (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const res = await axios.post("http://localhost:8800/api/auth/register", credentials)
-console.log(res);
-    if (Object.keys(errors).length === 0) {
-      alert("Form submitted successfully");
+    await axios.post("http://localhost:8800/api/auth/register", credentials);
+
+    if (Object.keys(errors).length === 0)
+     {
+      alert("A verification email has been sent to. please verify your email");
+      navigate('/login')
     }
   };
 
@@ -81,17 +83,6 @@ console.log(res);
     <div className="form">
       <form onSubmit={handleSubmit}>
         <span className="title">Register</span>
-        <div>
-          <label>Username:</label>
-          <input
-            type="text"
-            name="username"
-            placeholder="Username"
-            autoComplete="off"
-            onChange={handleChange}
-          />
-          {errors.username && <span>{errors.username}</span>}
-        </div>
         <div>
           <label>Email:</label>
           <input
@@ -124,7 +115,7 @@ console.log(res);
           <div className="password-input">
             <input
               type={showPassword ? "text" : "password"} // Toggle password visibility
-              name="password"
+              name="confirmPassword"
               placeholder="******"
               onChange={handleChange}
             />

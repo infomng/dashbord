@@ -18,6 +18,8 @@ const userSchema = new Schema({
   },
   img: {
     type: String,
+    default:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQDJaEoQJ0PLbNOn_xHRIw7mcyuIOj0_hVZlA&usqp=CAU",
   },
   password: {
     type: String,

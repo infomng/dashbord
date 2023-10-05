@@ -14,6 +14,9 @@ function ResetPassword() {
     axios
       .post(`http://localhost:8800/api/auth/reset-password/${id}/${token}`, { password })
       .then((res) => {
+         if (Object.keys(errors).length === 0) {
+           alert("Form submitted successfully");
+         }
         if (res.data.Status === "Success") {
           navigate("/login");
         }
@@ -49,3 +52,32 @@ function ResetPassword() {
 }
 
 export default ResetPassword;
+
+
+
+
+// import React from "react";
+// import { useState } from "react";
+// import { Link, useNavigate, useParams } from "react-router-dom";
+// import axios from "axios";
+
+// function ResetPassword() {
+//   const [password, setPassword] = useState<string>();
+//   const navigate = useNavigate();
+//   const { id, token } = useParams();
+
+//   // axios.defaults.withCredentials = true;
+//   const handleSubmit = (e: React.FormEvent) => {
+//     e.preventDefault();
+//     axios
+//       .post(`http://localhost:8800/api/auth/reset-password/${id}/${token}`, { password })
+//       .then((res) => {
+//          if (Object.keys(errors).length === 0) {
+//            alert("Form submitted successfully");
+//          }
+//         if (res.data.Status === "Success") {
+//           navigate("/login");
+//         }
+//       })
+//       .catch((err) => console.log(err));
+//   };
