@@ -1,6 +1,9 @@
+import './emailVerification.scss'
 import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
+
 import axios from "axios";
+
 
 const EmailVerification = () => {
   const params = useParams();
@@ -21,7 +24,17 @@ const EmailVerification = () => {
     verify();
   }, [params.id, params.token]);
 
-  return <div>Email Verification</div>;
+  return (
+    <>
+      <div className='verify' >
+        Your account has been verified successfully .{" "}
+        <Link to="/login" style={{ color: "#8884d8" }}>
+          {" "}
+          Go to login
+        </Link>
+      </div>
+    </>
+  );
 };
 
 export default EmailVerification;

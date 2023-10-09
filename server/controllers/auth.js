@@ -47,7 +47,7 @@ export const login = async (req, res, next) => {
 export const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
-    const user = await User.findOne({ email: email });
+    const user = await Admin.findOne({ email: email });
     if (!user) return res.send({ status: "user not found" });
 
     const token = jwt.sign(
@@ -65,9 +65,9 @@ export const forgotPassword = async (req, res, next) => {
 
     var mailOptions = {
       from: "infomng2022@gmail.com",
-      to: "infomng2022@gmail.com",
+      to: email,
       subject: "Reset Password Link",
-      text: `${process.env.PROXY}reset_password/${user._id}/${token}/`, // ce truc lè m'avait fait chier
+      text: `${process.env.PROXY}/reset_password/${user._id}/${token}/`, // ce truc lè m'avait fait chier
     };
 
     transporter.sendMail(mailOptions, function (error, info) {
@@ -85,7 +85,6 @@ export const forgotPassword = async (req, res, next) => {
 export const resetPassword = async (req, res, next) => {
   const { id, token } = req.params;
   const { password } = req.body;
-
   jwt.verify(token, process.env.JWT, (err, decoded) => {
     if (err) {
       return res.json({ Status: "Error with token" });
@@ -93,7 +92,7 @@ export const resetPassword = async (req, res, next) => {
       bcrypt
         .hash(password, 10)
         .then((hash) => {
-          User.findByIdAndUpdate({ _id: id }, { password: hash })
+          Admin.findByIdAndUpdate({ _id: id }, { password: hash })
             .then((u) => res.send({ Status: "Success" }))
             .catch((err) => res.send({ Status: err }));
         })

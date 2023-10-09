@@ -1,18 +1,17 @@
 import React, { useState, ChangeEvent, FormEvent } from "react";
 import "./register.scss";
-import { Link , useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-import axios from 'axios'
+import axios from "axios";
 
 interface FormData {
   username: string;
   email: string;
   password: string;
-
 }
 
 const Register: React.FC = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [credentials, setcredentials] = useState<FormData>({
     username: "",
     email: "",
@@ -66,16 +65,23 @@ const Register: React.FC = () => {
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword); // Toggle the state
   };
- 
-  const handleSubmit = async  (e: FormEvent<HTMLFormElement>) => {
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     await axios.post("http://localhost:8800/api/auth/register", credentials);
 
-    if (Object.keys(errors).length === 0)
-     {
-      alert("A verification email has been sent to. please verify your email");
-      navigate('/login')
+    alert(
+      `A verification email has been sent to ${credentials.email} . Please verify your email`
+    );
+
+    navigate("/login");
+
+    if (Object.keys(errors).length === 0) {
+      alert(
+        `A verification email has been sent to ${credentials.email} . Please verify your email`
+      );
+      navigate("/login");
     }
   };
 

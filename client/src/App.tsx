@@ -106,9 +106,8 @@ function App() {
     },
     {
       path: "/verify-email/:id/:token",
-      element: <EmailVerirfication/>,
+      element: <EmailVerirfication />,
     },
-  
   ]);
 
   return <RouterProvider router={router} />;

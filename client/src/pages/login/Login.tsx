@@ -1,12 +1,10 @@
 import React, { useState, ChangeEvent, useContext } from "react";
 import "./login.scss";
-
 import { useNavigate} from "react-router-dom";
 import axios from "axios";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-import { purple } from "@mui/material/colors";
 
 
 
@@ -19,8 +17,6 @@ const Login = () => {
       email: String,
       password: String,
     });
-
-    console.log(credentials);
 
 
   const [errors, setErrors] = useState<{ [key: string]: string }>({});
@@ -35,6 +31,7 @@ const Login = () => {
       validationErrors.email = "Email is required";
     } else if (name === "email" && !/\S+@\S+\.\S+/.test(value)) {
       validationErrors.email = "Email is not valid";
+      
     } else {
       validationErrors.email = "";
     }
